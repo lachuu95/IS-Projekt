@@ -23,7 +23,7 @@ column_name = [
     "Przekątna",
     "Rozdzielczość",
     "Rodzaj matrycy",
-    "Parametr tak vs nie",
+    "Ekran dotykowy",
     "CPU",
     "Rdzenie",
     "Taktowanie",
@@ -36,7 +36,7 @@ column_name = [
     "Napęd optyczny",
 ]
 dataset = Data(column_name, file_path)
-
+#TODO poprawić przewijanie nagłówków
 window = sg.Window("Integracja Systemów - Błażej Łach", dataset.create_layout())
 
 while True:

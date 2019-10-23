@@ -25,7 +25,7 @@ if __name__ == "__main__":
     "Przekątna",
     "Rozdzielczość",
     "Rodzaj matrycy",
-    "Parametr tak vs nie",
+    "Ekran dotykowy",
     "CPU",
     "Rdzenie",
     "Taktowanie",

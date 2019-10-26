@@ -27,7 +27,7 @@ class ReadTXT:
         data_dict = {}
         for row_index, row in enumerate(contents):
             del row[-1]
-            data_dict[row_index] = {
+            data_dict[str(row_index)] = {
                 self.__column_name[item_index]: item
                 for item_index, item in enumerate(row)
             }

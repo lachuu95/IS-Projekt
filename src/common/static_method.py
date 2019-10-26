@@ -1,5 +1,5 @@
 from typing import List
-
+import os
 
 def get_columns_headers() -> List[str]:
     columns_headers = [
@@ -24,3 +24,6 @@ def get_columns_headers() -> List[str]:
 
 def get_no_data_value() -> str:
     return "bd."
+
+def get_file_path() -> str:
+    return os.path.join(os.getcwd(), "resource", "katalog.txt")

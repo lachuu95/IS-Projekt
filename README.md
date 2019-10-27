@@ -25,7 +25,6 @@ Integracja Systemów Projekt
 - [Laboratorium 3 użycie](#Laboratorium-3-użycie)
 - [Technologie](#Technologie)
 - [Przygotownaie środowiska](#Przygotownaie-środowiska)
-- [Uruchomienie serwera mySQL](#Uruchomienie-serwera-mySQL)
 ## Laboratorium 1 użycie
 - wersja wczytująca lina po lini:
     ```console

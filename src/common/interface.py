@@ -6,6 +6,7 @@ import PySimpleGUI as sg
 class Interface:
     def __init__(self, data: Dataset) -> None:
         self.__data = data
+        self.__data_source = "Brak"
 
     def get_console_layout(self) -> str:
         column_max_width = self.__data.calculate_column_char_width()
@@ -76,38 +77,40 @@ class Interface:
             data_layout.append(row_layout)
         return data_layout
 
-    def create_layout(self, **kwargs) -> List[List[sg.InputText]]:
+    def create_layout(self, use_db:bool=False) -> List[List[sg.InputText]]:
         index_number = len(self.__data.data)
         scrol = False
         if index_number >= 10:
             scrol = True
+        button_label = [(True, "Wczytaj dane z pliku TXT"), (True, "Zapisz dane do pliku TXT"), (use_db, "Import z bazy danych"), (True, "Zamknij")]
         layout = [
-            [
-                sg.Button("Wczytaj dane z pliku TXT"),
-                sg.Button("Zapisz dane do pliku TXT"),
-                sg.Button("Zamknij"),
-            ],
+            [sg.Button(x) for is_use, x in button_label if is_use]+[sg.Text(f"Źródło danych: {self.__data_source}")],
             [sg.Column(self.get_gui_layout(), scrollable=scrol)],
         ]
         return layout
 
-    def show_gui(self, **kwargs) -> None:
-        for key, value in kwargs.items():
-            print("%s == %s" % (key, value))
-        window = sg.Window("Integracja Systemów - Błażej Łach", self.create_layout())
+    def show_gui(self, use_db:bool=False) -> None:
+        window = sg.Window("Integracja Systemów - Błażej Łach", self.create_layout(use_db))
         while True:
             event, values = window.read()
             if event is None or event == "Zamknij":
                 break
             if event == "Wczytaj dane z pliku TXT":
+                self.__data_source = "TXT"
                 self.__data.read_data()
                 window.close()
                 window = sg.Window(
-                    "Integracja Systemów - Błażej Łach", self.create_layout()
+                    "Integracja Systemów - Błażej Łach", self.create_layout(use_db)
                 )
             if event == "Zapisz dane do pliku TXT":
                 self.__data.udate_data(values)
                 self.__data.save_data()
                 sg.Popup("Zapisano dane.")
-
+            if event == "Import z bazy danych" and use_db:
+                self.__data_source = "DB"
+                self.__data.read_data_db()
+                window.close()
+                window = sg.Window(
+                    "Integracja Systemów - Błażej Łach", self.create_layout(use_db)
+                )
         window.close()

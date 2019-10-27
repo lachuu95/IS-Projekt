@@ -77,20 +77,28 @@ class Interface:
             data_layout.append(row_layout)
         return data_layout
 
-    def create_layout(self, use_db:bool=False) -> List[List[sg.InputText]]:
+    def create_layout(self, use_db: bool = False) -> List[List[sg.InputText]]:
         index_number = len(self.__data.data)
         scrol = False
         if index_number >= 10:
             scrol = True
-        button_label = [(True, "Wczytaj dane z pliku TXT"), (True, "Zapisz dane do pliku TXT"), (use_db, "Import z bazy danych"), (True, "Zamknij")]
+        button_label = [
+            (True, "Wczytaj dane z pliku TXT"),
+            (True, "Zapisz dane do pliku TXT"),
+            (use_db, "Import z bazy danych"),
+            (True, "Zamknij"),
+        ]
         layout = [
-            [sg.Button(x) for is_use, x in button_label if is_use]+[sg.Text(f"Źródło danych: {self.__data_source}")],
+            [sg.Button(x) for is_use, x in button_label if is_use]
+            + [sg.Text(f"Źródło danych: {self.__data_source}")],
             [sg.Column(self.get_gui_layout(), scrollable=scrol)],
         ]
         return layout
 
-    def show_gui(self, use_db:bool=False) -> None:
-        window = sg.Window("Integracja Systemów - Błażej Łach", self.create_layout(use_db))
+    def show_gui(self, use_db: bool = False) -> None:
+        window = sg.Window(
+            "Integracja Systemów - Błażej Łach", self.create_layout(use_db)
+        )
         while True:
             event, values = window.read()
             if event is None or event == "Zamknij":

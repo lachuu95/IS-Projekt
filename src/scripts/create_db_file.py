@@ -1,28 +1,30 @@
+#!/usr/bin/env python3
+import os
+import sys
 import sqlite3
-from src.common.dataset import Dataset
-from src.common.static_method import get_db_file_path, get_table_name, get_no_data_value
 
-conn = sqlite3.connect(get_db_file_path())
+sys.path.append(os.path.dirname(os.path.dirname(sys.path[0])))
+from src.common.dataset import Dataset
+from src.common.constants import file_path_db, table_name, no_data_value, columns_headers_and_type, columns_headers
+
+conn = sqlite3.connect(file_path_db())
 cur = conn.cursor()
-cur.execute(f"DROP TABLE IF EXISTS {get_table_name()};")
+cur.execute(f"DROP TABLE IF EXISTS {table_name()};")
 conn.commit()
+column_types = ", ".join([f'"{name}" {type}' for name, type in columns_headers_and_type()])
 cur.execute(
-    f"""CREATE TABLE IF NOT EXISTS {get_table_name()} (
-        Id integer PRIMARY KEY, "Producent" text, "Przekątna" text,
-        "Rozdzielczość" text, "Rodzaj matrycy" text, "Ekran dotykowy" text,
-        "CPU" text, "Rdzenie" text, "Taktowanie" text, "RAM" text,
-        "Pojemność dysku" text, "Typ dysku" text, "GPU" text, "Pamieć GPU" text,
-        "System operacyjny" text, "Napęd optyczny" text);"""
+    f"""CREATE TABLE IF NOT EXISTS {table_name()} (
+        Id integer PRIMARY KEY, {column_types});"""
 )
 conn.commit()
-sql_insert = f"""INSERT INTO {get_table_name()} (
-    "Producent", "Przekątna", "Rozdzielczość", "Rodzaj matrycy",
-    "Ekran dotykowy", "CPU", "Rdzenie", "Taktowanie", "RAM", "Pojemność dysku",
-    "Typ dysku", "GPU", "Pamieć GPU", "System operacyjny", "Napęd optyczny")
-    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"""
+column_name = ", ".join(f'"{name}"' for name in columns_headers())
+sql_insert = f"""INSERT INTO {table_name()} ({column_name})
+    VALUES({", ".join("?"for _ in columns_headers())});"""
 data = Dataset()
 data.read_data()
 for _, row in data.data.items():
-    row_tuple = tuple(item if item != get_no_data_value() else "" for _, item in row.items())
+    row_tuple = tuple(
+        item if item != no_data_value() else "" for _, item in row.items()
+    )
     cur.execute(sql_insert, row_tuple)
 conn.commit()

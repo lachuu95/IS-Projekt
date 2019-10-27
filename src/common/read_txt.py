@@ -1,5 +1,5 @@
 from typing import List, Dict
-from src.common.static_method import get_no_data_value
+from src.common.constants import no_data_value
 
 
 class ReadTXT:
@@ -20,7 +20,7 @@ class ReadTXT:
         return self.__fill_empty_cell(row_in_list)
 
     def __fill_empty_cell(self, row_contents: List[str]) -> List[str]:
-        return [x if x != "" else get_no_data_value() for x in row_contents]
+        return [x if x != "" else no_data_value() for x in row_contents]
 
     def convert_lines_to_json(
         self, contents: List[List[str]]

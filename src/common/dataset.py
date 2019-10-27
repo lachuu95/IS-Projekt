@@ -2,19 +2,19 @@ from src.common.read_txt import ReadTXT
 from src.common.save_txt import SaveTXT
 from src.common.read_db import ReadDB
 from typing import Dict, List, Tuple
-from src.common.static_method import (
-    get_columns_headers,
-    get_file_path,
-    get_db_file_path,
-    get_table_name,
+from src.common.constants import (
+    columns_headers,
+    file_path_txt,
+    file_path_db,
+    table_name,
 )
 import os
 
 
 class Dataset:
     def __init__(self) -> None:
-        self.__file_path = self.__is_file(get_file_path())
-        self.__columns_headers = get_columns_headers()
+        self.__file_path = self.__is_file(file_path_txt())
+        self.__columns_headers = columns_headers()
         self.__data = {"1": {x: "" for x in self.__columns_headers}}
 
     @property
@@ -45,8 +45,8 @@ class Dataset:
 
     def read_data_db(self) -> None:
         db_reader = ReadDB(self.__columns_headers)
-        db_reader.create_connection(get_db_file_path())
-        contents = db_reader.select_from_db(get_table_name())
+        db_reader.create_connection(self.__is_file(file_path_db()))
+        contents = db_reader.select_from_db(table_name())
         self.__data = db_reader.convert_db_to_json(contents)
 
     def calculate_column_char_width(self) -> Dict[str, int]:
@@ -59,7 +59,7 @@ class Dataset:
 
     def __is_file(self, file_path: str) -> str:
         if not os.path.isfile(file_path):
-            raise FileNotFoundError(f"File {get_file_path()} doesn't exist.")
+            raise FileNotFoundError(f"File {file_path} doesn't exist.")
         else:
             return file_path
 

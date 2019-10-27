@@ -1,5 +1,5 @@
 from typing import List, Dict
-from src.common.static_method import get_no_data_value
+from src.common.constants import no_data_value
 
 
 class SaveTXT:
@@ -21,7 +21,7 @@ class SaveTXT:
         return row_out_line
 
     def __set_empty_cell(self, row_contents: List[str]) -> List[str]:
-        return [x if x != get_no_data_value() else "" for x in row_contents]
+        return [x if x != no_data_value() else "" for x in row_contents]
 
     def convert_json_to_lines(
         self, contents: Dict[str, Dict[str, str]]

@@ -19,10 +19,23 @@ Integracja Systemów Projekt
     >
     >Program powinien posiadać:
     >- przycisk "Importuj z bazy danych" służący do wczytywania danych z bazy danych - po naciśnięciu powinien wyświetlić wczytane dane w formie graficznej tabeli (tak jak na Laboratorium 2.);
+- Laboratorium 4 - import i eksport danych z bazy danych do plików tekstowych
+    >Korzystając z przykładu podanego w skrypcie oraz programu z Laboratorium 3 dodaj do programu nową funkcję umożliwiającą modyfikowanie danych wczytanych z tabeli oraz eksport danych do bazy danych. Zadbaj o wyświetlanie użytkownikowi informacji o różnicach między danymi, które widzi, a tymi które są zapisane w bazie danych.
+    >
+    >Program powinien posiadać:
+    >- możliwość edycji danych pobranych z bazy danych;
+    >- przycisk "Eksportuj do bazy danych", który po naciśnięciu zaktualizuje stan bazy danych;
+    >- Pamiętaj o uwzględnieniu poprawnego działania pozostałych przycisków z programu z Laboratorium 3. i 2. oraz możliwości wczytywania danych z jednego źródła i zapisu do innego np. wczytanie danych z pliku i zapis do bazy danych.
+    >
+    >W repozytorium umieść plik archiwum zawierający:
+    >- katalog "projekt4" z plikami projektu;
+    >- katalog "rozwiazanie4" z uruchamialnymi plikami rozwiązania;
+    >- szczegóły ustawienia środowiska testowego zapisane w pliku tekstowym.
 ## Spis treści
 - [Laboratorium 1 użycie](#Laboratorium-1-użycie)
 - [Laboratorium 2 użycie](#Laboratorium-2-użycie)
 - [Laboratorium 3 użycie](#Laboratorium-3-użycie)
+- [Laboratorium 4 użycie](#Laboratorium-4-użycie)
 - [Technologie](#Technologie)
 - [Przygotownaie środowiska](#Przygotownaie-środowiska)
 ## Laboratorium 1 użycie
@@ -40,7 +53,11 @@ $ ./src/scripts/Lab2.py
 ```
 ## Laboratorium 3 użycie
 ```console
-$ ./src/scripts/Lab2.py
+$ ./src/scripts/Lab3.py
+```
+## Laboratorium 4 użycie
+```console
+$ ./src/scripts/Lab4.py
 ```
 ## Technologie
 - [Python 3.6](https://docs.python.org/3.6/ "Dokumentacja Pythona")

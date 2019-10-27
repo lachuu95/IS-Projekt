@@ -77,7 +77,7 @@ class Interface:
             data_layout.append(row_layout)
         return data_layout
 
-    def create_layout(self, use_db: bool = False) -> List[List[sg.InputText]]:
+    def create_layout(self, use_read_db: bool = False, use_write_db: bool = False) -> List[List[sg.InputText]]:
         index_number = len(self.__data.data)
         scrol = False
         if index_number >= 10:
@@ -85,7 +85,8 @@ class Interface:
         button_label = [
             (True, "Wczytaj dane z pliku TXT"),
             (True, "Zapisz dane do pliku TXT"),
-            (use_db, "Import z bazy danych"),
+            (use_read_db, "Import z bazy danych"),
+            (use_write_db, "Export do bazy danych"),
             (True, "Zamknij"),
         ]
         layout = [
@@ -95,9 +96,9 @@ class Interface:
         ]
         return layout
 
-    def show_gui(self, use_db: bool = False) -> None:
+    def show_gui(self, use_read_db: bool = False, use_write_db: bool = False) -> None:
         window = sg.Window(
-            "Integracja Systemów - Błażej Łach", self.create_layout(use_db)
+            "Integracja Systemów - Błażej Łach", self.create_layout(use_read_db, use_write_db)
         )
         while True:
             event, values = window.read()
@@ -108,17 +109,21 @@ class Interface:
                 self.__data.read_data()
                 window.close()
                 window = sg.Window(
-                    "Integracja Systemów - Błażej Łach", self.create_layout(use_db)
+                    "Integracja Systemów - Błażej Łach", self.create_layout(use_read_db, use_write_db)
                 )
             if event == "Zapisz dane do pliku TXT":
                 self.__data.udate_data(values)
                 self.__data.save_data()
-                sg.Popup("Zapisano dane.")
-            if event == "Import z bazy danych" and use_db:
+                sg.Popup("Zapisano dane w plik txt.")
+            if event == "Import z bazy danych" and use_read_db:
                 self.__data_source = "DB"
                 self.__data.read_data_db()
                 window.close()
                 window = sg.Window(
-                    "Integracja Systemów - Błażej Łach", self.create_layout(use_db)
+                    "Integracja Systemów - Błażej Łach", self.create_layout(use_read_db, use_write_db)
                 )
+            if event == "Export do bazy danych" and use_write_db:
+                self.__data.udate_data(values)
+                #self.__data.save_data()
+                sg.Popup("Zapisano dane w bazie danych.")
         window.close()

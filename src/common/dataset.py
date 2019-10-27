@@ -1,7 +1,13 @@
 from src.common.read_txt import ReadTXT
 from src.common.save_txt import SaveTXT
+from src.common.read_db import ReadDB
 from typing import Dict, List, Tuple
-from src.common.static_method import get_columns_headers, get_file_path
+from src.common.static_method import (
+    get_columns_headers,
+    get_file_path,
+    get_db_file_path,
+    get_table_name,
+)
 import os
 
 
@@ -9,14 +15,14 @@ class Dataset:
     def __init__(self) -> None:
         self.__file_path = self.__is_file(get_file_path())
         self.__columns_headers = get_columns_headers()
-        self.__data = {"0": {x: "" for x in self.__columns_headers}}
+        self.__data = {"1": {x: "" for x in self.__columns_headers}}
 
     @property
     def data(self) -> Dict[str, Dict[str, str]]:
         return self.__data
 
     @data.setter
-    def data(self, data:Dict[str, Dict[str, str]]) -> None:
+    def data(self, data: Dict[str, Dict[str, str]]) -> None:
         self.__data = data
 
     @property
@@ -37,6 +43,12 @@ class Dataset:
         contents = txt_saver.join_by_lines(contents_line)
         txt_saver.save_to_file(self.__file_path, contents)
 
+    def read_data_db(self) -> None:
+        db_reader = ReadDB(self.__columns_headers)
+        db_reader.create_connection(get_db_file_path())
+        contents = db_reader.select_from_db(get_table_name())
+        self.__data = db_reader.convert_db_to_json(contents)
+
     def calculate_column_char_width(self) -> Dict[str, int]:
         column_max_width = {x: len(x) + 2 for x in ["Lp."] + self.__columns_headers}
         for index, row in self.__data.items():
@@ -51,7 +63,7 @@ class Dataset:
         else:
             return file_path
 
-    def udate_data(self, values: Dict[Tuple[str,str], str]) -> None:
+    def udate_data(self, values: Dict[Tuple[str, str], str]) -> None:
         self.__data = {
             index: {key: values[(index, key)] for key, _ in row.items()}
             for index, row in self.__data.items()

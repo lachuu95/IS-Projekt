@@ -28,25 +28,23 @@ Integracja Systemów Projekt
 - [Uruchomienie serwera mySQL](#Uruchomienie-serwera-mySQL)
 ## Laboratorium 1 użycie
 - wersja wczytująca lina po lini:
-```console
-$ ./src/scripts/read_flat_file_line.py resource/katalog.txt
-```
+    ```console
+    $ ./src/scripts/Lab1.py
+    ```
 - wersja wczytująca do data frame:
-```console
-$ ./src/scripts/read_flat_file_df.py resource/katalog.txt
-```
+    ```console
+    $ ./src/scripts/Lab1v1.py
+    ```
 ## Laboratorium 2 użycie
 ```console
-$ ./src/scripts/read_n_save_file_gui.py
+$ ./src/scripts/Lab2.py
 ```
 ## Laboratorium 3 użycie
 ```console
-$ ??
+$ ./src/scripts/Lab2.py
 ```
 ## Technologie
 - [Python 3.6](https://docs.python.org/3.6/ "Dokumentacja Pythona")
-- [Docker 18.09.7](https://docs.docker.com/ "Dokumentacja Dokera")
-- [Docker Compose 1.24.1](https://docs.docker.com/compose/ "Dokumentacja Docker Compose")
 ## Przygotownaie środowiska
 ```console
 $ python3 -m venv .env
@@ -56,11 +54,4 @@ $ . .env/bin/activate
 ```
 ```console
 $ pip install -U -r requirements.txt
-```
-## Uruchomienie serwera mySQL
-```console
-$ cd resource/
-```
-```console
-$ docker-compose up
 ```

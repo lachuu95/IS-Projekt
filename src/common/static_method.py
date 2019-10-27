@@ -1,8 +1,9 @@
 from typing import List
 import os
 
+
 def get_columns_headers() -> List[str]:
-    columns_headers = [
+    return [
         "Producent",
         "Przekątna",
         "Rozdzielczość",
@@ -19,11 +20,19 @@ def get_columns_headers() -> List[str]:
         "System operacyjny",
         "Napęd optyczny",
     ]
-    return columns_headers
 
 
 def get_no_data_value() -> str:
     return "bd."
 
+
 def get_file_path() -> str:
     return os.path.join(os.getcwd(), "resource", "katalog.txt")
+
+
+def get_db_file_path() -> str:
+    return os.path.join(os.getcwd(), "resource", "katalog.db")
+
+
+def get_table_name() -> str:
+    return "katalog"

@@ -52,7 +52,7 @@ class Dataset:
 
     def save_data_db(self) -> None:
         db_saver = SaveDB()
-        db_saver.create_connection(file_path_db)
+        db_saver.create_connection(file_path_db())
         db_saver.drop_table(table_name())
         db_saver.create_table(table_name())
         contents = db_saver.convert_json_to_db(self.__data)

@@ -124,6 +124,6 @@ class Interface:
                 )
             if event == "Export do bazy danych" and use_write_db:
                 self.__data.udate_data(values)
-                #self.__data.save_data()
+                self.__data.save_data_db()
                 sg.Popup("Zapisano dane w bazie danych.")
         window.close()

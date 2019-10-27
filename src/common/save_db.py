@@ -24,10 +24,11 @@ class SaveDB:
         )
         self.__conn.commit()
 
-    def insert_into_db(self, table_name:str, data_list: List[Tuple[str]]) -> None:
+    def insert_into_db(self, table_name:str, data_list: Tuple[str]) -> None:
         column_name = ", ".join(f'"{name}"' for name in columns_headers())
-        sql_insert = f"""INSERT INTO {table_name} ({column_name})
-            VALUES({", ".join("?"for _ in columns_headers())});"""
+        row = "("+", ".join("?"for _ in columns_headers())+")"
+        content = ", ".join([row for x in range(int(len(data_list)/len(columns_headers())))])
+        sql_insert = f"INSERT INTO {table_name} ({column_name}) VALUES{content};"
         cur = self.__conn.cursor()
         cur.execute(sql_insert, data_list)
         self.__conn.commit()
@@ -38,8 +39,8 @@ class SaveDB:
 
     def convert_json_to_db(
         self, contents: Dict[str, Dict[str, str]]
-    ) -> List[Tuple[str]]:
-        data_list = []
+    ) -> Tuple[str]:
+        data_tuple = ()
         for _, row in contents.items():
-            data_list.append(tuple(self.__set_empty_cell(row.values())))
-        return data_list
+            data_tuple+=(tuple(self.__set_empty_cell(row.values())))
+        return data_tuple

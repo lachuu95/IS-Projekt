@@ -4,8 +4,10 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(sys.path[0])))
 from src.common.dataset import Dataset
+from src.common.interface import Interface
 
 if __name__ == "__main__":
     data = Dataset()
     data.read_data()
-    print(data.get_console_layout())
+    interface = Interface(data)
+    print(interface.get_console_layout())

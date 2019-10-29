@@ -8,7 +8,7 @@ class SaveTXT:
 
     def save_to_file(self, file_path: str, contents: str) -> None:
         file_object = open(file_path, "w")
-        file_object.write(contents)
+        file_object.write(contents+"\n")
         file_object.close()
 
     def join_by_lines(self, contents: List[str]) -> str:

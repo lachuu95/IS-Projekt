@@ -1,6 +1,7 @@
 from src.common.read_txt import ReadTXT
 from src.common.save_txt import SaveTXT
 from src.common.read_db import ReadDB
+from src.common.save_db import SaveDB
 from typing import Dict, List, Tuple
 from src.common.constants import (
     columns_headers,
@@ -48,6 +49,14 @@ class Dataset:
         db_reader.create_connection(self.__is_file(file_path_db()))
         contents = db_reader.select_from_db(table_name())
         self.__data = db_reader.convert_db_to_json(contents)
+
+    def save_data_db(self) -> None:
+        db_saver = SaveDB()
+        db_saver.create_connection(file_path_db())
+        db_saver.drop_table(table_name())
+        db_saver.create_table(table_name())
+        contents = db_saver.convert_json_to_db(self.__data)
+        db_saver.insert_into_db(table_name(),contents)
 
     def calculate_column_char_width(self) -> Dict[str, int]:
         column_max_width = {x: len(x) + 2 for x in ["Lp."] + self.__columns_headers}

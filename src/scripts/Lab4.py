@@ -9,4 +9,4 @@ from src.common.interface import Interface
 if __name__ == "__main__":
     data = Dataset()
     interface = Interface(data)
-    interface.show_gui(read_db=True)
+    interface.show_gui(read_db=True, write_db=True)

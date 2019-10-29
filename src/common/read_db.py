@@ -25,5 +25,5 @@ class ReadDB:
         data_dict = {}
         for row in contents:
             line = self.__fill_empty_cell(list(row[1:]))
-            data_dict[row[0]] = dict(zip(self.__column_name, line))
+            data_dict[str(row[0])] = dict(zip(self.__column_name, line))
         return data_dict

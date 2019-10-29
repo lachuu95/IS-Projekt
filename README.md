@@ -1,12 +1,12 @@
 # IS-Projekt
 Integracja Systemów Projekt
 ## Spis treści
-- [Laboratorium 1](#Laboratorium-1, "Przejdz do laboratorium 1")
-- [Laboratorium 2](#Laboratorium-2, "Przejdz do laboratorium 2")
-- [Laboratorium 3](#Laboratorium-3, "Przejdz do laboratorium 3")
-- [Laboratorium 4](#Laboratorium-4, "Przejdz do laboratorium 4")
-- [Technologie](#Technologie, "Przejdz do wykorzystanych Technologii")
-- [Przygotownaie środowiska](#Przygotownaie-środowiska, "Przejdz do konfiguracji środowiska")
+- [Laboratorium 1](#Laboratorium-1 "Przejdz do laboratorium 1")
+- [Laboratorium 2](#Laboratorium-2 "Przejdz do laboratorium 2")
+- [Laboratorium 3](#Laboratorium-3 "Przejdz do laboratorium 3")
+- [Laboratorium 4](#Laboratorium-4 "Przejdz do laboratorium 4")
+- [Technologie](#Technologie "Przejdz do wykorzystanych Technologii")
+- [Przygotownaie środowiska](#Przygotownaie-środowiska "Przejdz do konfiguracji środowiska")
 ## Laboratorium 1
 Pliki tekstowe, odczyt danych
 >Korzystając z przykładu podanego w skrypcie napisz program, który po uruchomieniu wczytuje dane z pliku tekstowego "katalog.txt" (plik umieszczony w materiałach dodatkowych) i wyświetla dane na konsoli z etykietami poszczególnych pól (widok pseudo-tabelaryczny).

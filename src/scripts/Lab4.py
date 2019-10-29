@@ -2,7 +2,6 @@
 import os
 import sys
 
-
 sys.path.append(os.path.dirname(os.path.dirname(sys.path[0])))
 from src.common.dataset import Dataset
 from src.common.interface import Interface

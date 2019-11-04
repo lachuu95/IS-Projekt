@@ -18,6 +18,7 @@ class Window(QWidget):
         self.__data = data
         self.__read_db = False
         self.__write_db = False
+        self.__use_xml = False
         self.__label_source_variable = QLabel()
         self.__label_source_variable.setText("Brak")
         self.__label_source_variable.setAlignment(Qt.AlignLeft)
@@ -26,6 +27,8 @@ class Window(QWidget):
                 self.__read_db = value
             if key == "write_db" and value:
                 self.__write_db = value
+            if key == "use_xml" and value:
+                self.__use_xml = value
         QWidget.__init__(self, *args)
         self.setWindowTitle("Integracja Systemów - Błażej Łach")
         self.__table_view = QTableView()
@@ -51,13 +54,20 @@ class Window(QWidget):
         btn_save.clicked.connect(self.__click_save)
 
         if self.__read_db:
-            btn_import = QPushButton("Import z bazy danych", self)
-            buttons_layout.addWidget(btn_import)
-            btn_import.clicked.connect(self.__click_import)
+            btn_import_db = QPushButton("Import z bazy danych", self)
+            buttons_layout.addWidget(btn_import_db)
+            btn_import_db.clicked.connect(self.__click_import_db)
         if self.__write_db:
-            btn_export = QPushButton("Export do bazy danych", self)
-            buttons_layout.addWidget(btn_export)
-            btn_export.clicked.connect(self.__click_export)
+            btn_export_db = QPushButton("Export do bazy danych", self)
+            buttons_layout.addWidget(btn_export_db)
+            btn_export_db.clicked.connect(self.__click_export_db)
+        if self.__use_xml:
+            btn_import_xml = QPushButton("Import danych z XML", self)
+            buttons_layout.addWidget(btn_import_xml)
+            btn_import_xml.clicked.connect(self.__click_import_xml)
+            btn_export_xml = QPushButton("Export danych do XML", self)
+            buttons_layout.addWidget(btn_export_xml)
+            btn_export_xml.clicked.connect(self.__click_export_xml)
 
         buttons_layout.addWidget(btn_exit)
         btn_exit.clicked.connect(self.close)
@@ -88,15 +98,27 @@ class Window(QWidget):
         )
         self.__update_table_view()
 
-    def __click_import(self):
+    def __click_import_db(self):
         self.__data.read_data_db()
         self.__label_source_variable.setText("DB")
         self.__update_table_view()
 
-    def __click_export(self):
+    def __click_export_db(self):
         self.__data.save_data_db()
         QMessageBox().warning(
             self, "Komunikat", "Zapisano do bazy danych", QMessageBox.Ok
+        )
+        self.__update_table_view()
+
+    def __click_import_xml(self):
+        self.__data.read_data_xml()
+        self.__label_source_variable.setText("XML")
+        self.__update_table_view()
+
+    def __click_export_xml(self):
+        self.__data.save_data_xml()
+        QMessageBox().warning(
+            self, "Komunikat", "Zapisano do pliku XML", QMessageBox.Ok
         )
         self.__update_table_view()
 

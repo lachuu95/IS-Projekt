@@ -2,11 +2,13 @@ from src.common.read_txt import ReadTXT
 from src.common.save_txt import SaveTXT
 from src.common.read_db import ReadDB
 from src.common.save_db import SaveDB
+from src.common.read_xml import ReadXML
 from typing import Dict, List, Tuple
 from src.common.constants import (
     columns_headers,
     file_path_txt,
     file_path_db,
+    file_path_xml,
     table_name,
 )
 import os
@@ -14,7 +16,7 @@ import os
 
 class Dataset:
     def __init__(self) -> None:
-        self.__file_path = self.__is_file(file_path_txt())
+        self.__file_path = file_path_txt()
         self.__columns_headers = columns_headers()
         self.__data = {"1": {x: "" for x in self.__columns_headers}}
 
@@ -57,6 +59,13 @@ class Dataset:
         db_saver.create_table(table_name())
         contents = db_saver.convert_json_to_db(self.__data)
         db_saver.insert_into_db(table_name(),contents)
+
+    def read_data_xml(self) -> None:
+        xml_reader = ReadXML()
+        self.__data = xml_reader.read_from_xml_to_json(self.__is_file(file_path_xml()))
+
+    def save_data_xml(self) -> None:
+        print("dupa")
 
     def calculate_column_char_width(self) -> Dict[str, int]:
         column_max_width = {x: len(x) + 2 for x in ["Lp."] + self.__columns_headers}

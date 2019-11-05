@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<laptops moddate="2019-11-05 wto 09:25">
+	<laptop id="1">
+		<manufacturer />
+		<screen>
+			<size />
+			<resolution />
+			<type />
+			<touchscreen />
+		</screen>
+		<processor>
+			<name>ghfv</name>
+			<physical_cores>fgh</physical_cores>
+			<clock_speed>gfbf</clock_speed>
+		</processor>
+		<ram />
+		<disc>
+			<storage />
+			<type />
+		</disc>
+		<graphic_card>
+			<name />
+			<memory />
+		</graphic_card>
+		<os />
+		<disc_reader />
+	</laptop>
+</laptops>
+	

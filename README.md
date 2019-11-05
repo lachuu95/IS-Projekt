@@ -110,3 +110,10 @@ $ . .env/bin/activate
 ```console
 $ pip install -U -r requirements.txt
 ```
+## importy do exe
+```python
+from typing import List, Dict, Tuple
+import sqlite3
+from xml.etree import ElementTree
+from PyQt5 import QtWidgets
+```

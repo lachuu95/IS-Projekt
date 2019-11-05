@@ -3,6 +3,7 @@ from src.common.save_txt import SaveTXT
 from src.common.read_db import ReadDB
 from src.common.save_db import SaveDB
 from src.common.read_xml import ReadXML
+from src.common.save_xml import SaveXML
 from typing import Dict, List, Tuple
 from src.common.constants import (
     columns_headers,
@@ -65,7 +66,9 @@ class Dataset:
         self.__data = xml_reader.read_from_xml_to_json(self.__is_file(file_path_xml()))
 
     def save_data_xml(self) -> None:
-        print("dupa")
+        xml_saver = SaveXML()
+        xml_saver.translate_data(self.__data)
+        xml_saver.save_xml(file_path_xml())
 
     def calculate_column_char_width(self) -> Dict[str, int]:
         column_max_width = {x: len(x) + 2 for x in ["Lp."] + self.__columns_headers}

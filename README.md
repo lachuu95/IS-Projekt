@@ -1,12 +1,14 @@
 # IS-Projekt
 Integracja Systemów Projekt
 ## Spis treści
-- [Laboratorium 1](#Laboratorium-1 "Przejdz do laboratorium 1")
-- [Laboratorium 2](#Laboratorium-2 "Przejdz do laboratorium 2")
-- [Laboratorium 3](#Laboratorium-3 "Przejdz do laboratorium 3")
-- [Laboratorium 4](#Laboratorium-4 "Przejdz do laboratorium 4")
-- [Technologie](#Technologie "Przejdz do wykorzystanych Technologii")
-- [Przygotownaie środowiska](#Przygotownaie-środowiska "Przejdz do konfiguracji środowiska")
+- [Laboratorium 1](#Laboratorium-1 "Przejdź do laboratorium 1")
+- [Laboratorium 2](#Laboratorium-2 "Przejdź do laboratorium 2")
+- [Laboratorium 3](#Laboratorium-3 "Przejdź do laboratorium 3")
+- [Laboratorium 4](#Laboratorium-4 "Przejdź do laboratorium 4")
+- [Laboratorium 5 i 6](#Laboratorium-5-i-6 "Przejdź do laboratorium 5 i 6")
+- [Technologie](#Technologie "Przejdź do wykorzystanych Technologii")
+- [Przygotownaie środowiska](#Przygotownaie-środowiska "Przejdź do konfiguracji środowiska")
+---
 ## Laboratorium 1
 Pliki tekstowe, odczyt danych
 >Korzystając z przykładu podanego w skrypcie napisz program, który po uruchomieniu wczytuje dane z pliku tekstowego "katalog.txt" (plik umieszczony w materiałach dodatkowych) i wyświetla dane na konsoli z etykietami poszczególnych pól (widok pseudo-tabelaryczny).
@@ -21,6 +23,7 @@ Pliki tekstowe, odczyt danych
     ```console
     $ ./src/scripts/Lab1v1.py
     ```
+---
 ## Laboratorium 2
 Praca w trybie graficznym
 >Korzystając z przykładu podanego w skrypcie oraz programu z Laboratorium 1 napisz program okienkowy, który po uruchomieniu  wczytuje dane z pliku tekstowego "katalog.txt" (plik umieszczony w materiałach dodatkowych) i wyświetla wszystkie dane z etykietami poszczególnych pól w oknie.
@@ -33,6 +36,7 @@ Praca w trybie graficznym
 ```console
 $ ./src/scripts/Lab2.py
 ```
+---
 ## Laboratorium 3
 Baza danych do celów integracyjnych
 >Korzystając z przykładu podanego w skrypcie oraz programu z Laboratorium 2 dodaj do programu funkcję obsługi bazy danych:
@@ -46,6 +50,7 @@ Baza danych do celów integracyjnych
 ```console
 $ ./src/scripts/Lab3.py
 ```
+---
 ## Laboratorium 4
 Import i eksport danych z bazy danych do plików tekstowych
 >Korzystając z przykładu podanego w skrypcie oraz programu z Laboratorium 3 dodaj do programu nową funkcję umożliwiającą modyfikowanie danych wczytanych z tabeli oraz eksport danych do bazy danych. Zadbaj o wyświetlanie użytkownikowi informacji o różnicach między danymi, które widzi, a tymi które są zapisane w bazie danych.
@@ -63,10 +68,38 @@ Import i eksport danych z bazy danych do plików tekstowych
 ```console
 $ ./src/scripts/Lab4.py
 ```
+---
+## Laboratorium 5 i 6
+Budowa dokumentu XML
+>Korzystając z przykładu podanego w skrypcie oraz programu z Laboratorium 4 dodaj do programu nową funkcję umożliwiającą konwersję danych z bazy danych/pliku do formatu XML.
+>
+>Program powinien posiadać:
+>- przycisk "Importuj danych z XML" służący do wczytywania danych o katalogu z pliku XML;
+>- przycisk "Eksportuj danych do XML" służący do eksportowania danych o katalogu do pliku XML.
+>
+>Odczytywany i modyfikowany plik XML powinien być zbudowany według schematu podanego w pliku katalog.xml
+>
+>Przykładowy wygląd aplikacji będącej rezultatem wykonania zadania został pokazy w pliku mockup4.png
+>
+>Pamiętaj o: 
+>- uwzględnieniu poprawnego działania pozostałych przycisków z programu z Laboratorium 4;
+>- możliwości wczytywania danych z jednego źródła i zapisu do innego np. wczytanie danych z pliku XML i zapis do bazy danych;
+>- uwzględnieniu o przypadku, w którym należy utworzyć plik XML jeśli wcześniej taki nie istniał.  
+>
+>W repozytorium umieść plik archiwum zawierający:
+>- katalog "projekt5_6" z plikami projektu;
+>- katalog "rozwiazanie5_6" z uruchamialnymi plikami rozwiązania;
+>- szczegóły ustawienia środowiska testowego zapisane w pliku tekstowym.
+### Uruchomienie programu
+```console
+$ ./src/scripts/Lab5_6.py
+```
+---
 ## Technologie
 - [Python 3.6](https://docs.python.org/3.6/ "Dokumentacja Python'a")
 - [PyQt5](https://www.riverbankcomputing.com/static/Docs/PyQt5/ "Dokumentacja PyQt5")
 - [SQLite](https://www.sqlite.org/docs.html "Dokumentacja SQLite")
+---
 ## Przygotownaie środowiska
 ```console
 $ python3 -m venv .env
@@ -76,4 +109,11 @@ $ . .env/bin/activate
 ```
 ```console
 $ pip install -U -r requirements.txt
+```
+## importy do exe
+```python
+from typing import List, Dict, Tuple
+import sqlite3
+from xml.etree import ElementTree
+from PyQt5 import QtWidgets
 ```

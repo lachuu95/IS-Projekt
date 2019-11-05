@@ -28,11 +28,11 @@ class TableModel(QAbstractTableModel):
         elif role == Qt.DisplayRole or role == Qt.EditRole:
             return self.__data.data[row][column]
         elif role == Qt.BackgroundColorRole and self.__reference_data is not None:
-            if (
-                not self.__data.data[row][column]
-                == self.__reference_data.data[row][column]
-            ):
-                return QVariant(QColor(Qt.red))
+            if (index.row()) + 1 > 0 and (index.row() + 1) <= len(self.__reference_data.data):
+                if (self.__data.data[row][column] != self.__reference_data.data[row][column]):
+                    return QVariant(QColor(Qt.red))
+                else:
+                    return QVariant(QColor(Qt.white))
             else:
                 return QVariant(QColor(Qt.white))
         else:

@@ -6,6 +6,7 @@ Integracja Systemów Projekt
 - [Laboratorium 3](#Laboratorium-3 "Przejdź do laboratorium 3")
 - [Laboratorium 4](#Laboratorium-4 "Przejdź do laboratorium 4")
 - [Laboratorium 5 i 6](#Laboratorium-5-i-6 "Przejdź do laboratorium 5 i 6")
+- [Laboratorium 7 i 8](#Laboratorium-7-i-8 "Przejdź do laboratorium 7 i 8")
 - [Technologie](#Technologie "Przejdź do wykorzystanych Technologii")
 - [Przygotownaie środowiska](#Przygotownaie-środowiska "Przejdź do konfiguracji środowiska")
 ---
@@ -93,6 +94,37 @@ Budowa dokumentu XML
 ### Uruchomienie programu
 ```console
 $ ./src/scripts/Lab5_6.py
+```
+---
+## Laboratorium 7 i 8
+Budowa serwisu sieciowego z wykorzystaniem SOAP
+> Korzystając z przykładu podanego w skrypcie oraz programu z Laboratorium 2-6 rozbuduj program do postaci aplikacji serwerowej, która wystawia usługi SOAP. Dodatkowo stwórz aplikację klienta (osobne okno graficzne), która będzie odpytywać aplikację serwerową o dane.
+>
+>Aplikacja serwerowa powinna posiadać:
+>- (U1) usługę zwracającą liczbę rekordów w bazie danych przefiltrowaną na podstawie podanego przez klienta producenta;
+>- (U2) usługę zwracającą dane z bazy danych przefiltrowane na podstawie podanego przez klienta rodzaju matrycy;
+>
+>Aplikacja klienta powinna posiadać:
+>- [dla U1]
+>   - przycisk "liczba laptopów producenta", służący do wyświetlania liczby rekordów w bazie danych przefiltrowanych na podstawie podanego przez użytkowika producenta, po naciśnięciu powinna zostać wywołana usługa SOAP aplikacji serwerowej (U1);
+>   - listę rozwijaną z producentami do wyboru, jako kryterium działania metody pod przyciskiem "liczba laptopów producenta"
+>   - pole do wyświetlania liczby laptopów spełniających podane kryterium
+>- [dla U2]
+>   - przycisk "lista laptopów z określoną matrycą" służący do wyświetlania informacji z katalogu o urządzeniach z wybranym przez użytkownika rodzajem matrycy (U2).
+>   - listę rozwijaną z rodzajami matryc, jako kryterium działania metody pod przyciskiem "lista laptopów z określoną matrycą"
+>   - tabelę do wyświetlania danych laptopów spełniających podane kryterium
+>
+>Przykładowy wygląd aplikacji będącej rezultatem wykonania zadania został pokazy w pliku mockup5.png
+>
+>Pamiętaj o uwzględnieniu poprawnego działania pozostałych przycisków aplikacji serwerowej z Laboratoriów 2-6.
+>
+>W repozytorium umieść plik archiwum zawierający:
+>- katalog "projekt7_8" z plikami projektu lub projektów;
+>- katalog "rozwiazanie7_8" z uruchamialnymi plikami rozwiązania (aplikacji serwerowej i klienta);
+>- szczegóły ustawienia środowiska testowego zapisane w pliku tekstowym.
+### Uruchomienie programu
+```console
+$ ./src/scripts/Lab7_8.py
 ```
 ---
 ## Technologie

@@ -61,5 +61,9 @@ def file_path_xml() -> str:
     return os.path.join(os.getcwd(), RESOURCE_DIR, FILE_PATH_XML)
 
 
+def file_path_log() -> str:
+    return os.path.join(os.getcwd(), RESOURCE_DIR, "logs", "examples.log")
+
+
 def table_name() -> str:
     return "katalog"

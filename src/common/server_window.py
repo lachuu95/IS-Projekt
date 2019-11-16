@@ -11,16 +11,16 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 from src.common.dataset import Dataset
 from src.common.table_model import TableModel
-from src.common.worker import Worker
+from src.common.service_worker import ServiceWorker
 
 
-class Window(QWidget):
+class ServerWindow(QWidget):
     def __init__(self, data: Dataset, *args, **kwargs):
-        self.thread = Worker()
         self.__data = data
         self.__read_db = False
         self.__write_db = False
         self.__use_xml = False
+        self.__servive = False
         self.__label_source_variable = QLabel()
         self.__label_source_variable.setText("Brak")
         self.__label_source_variable.setAlignment(Qt.AlignLeft)
@@ -31,6 +31,10 @@ class Window(QWidget):
                 self.__write_db = value
             if key == "use_xml" and value:
                 self.__use_xml = value
+            if key == "service" and value:
+                self.__servive = value
+                self.thread = ServiceWorker()
+                self.thread.start()
         QWidget.__init__(self, *args)
         self.setWindowTitle("Integracja Systemów - Błażej Łach")
         self.__table_view = QTableView()
@@ -39,7 +43,7 @@ class Window(QWidget):
         layout.addLayout(self.__get_buttons_layout())
         layout.addWidget(self.__table_view)
         self.setLayout(layout)
-        self.thread.start()
+
 
     def __get_buttons_layout(self):
         btn_read = QPushButton("Wczytaj dane z pliku TXT", self)

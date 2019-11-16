@@ -1,7 +1,7 @@
+#!/usr/bin/env python3
 from zeep import Client
 import json
 
-#TODO: Autowyszukiwanie w sieci lokalnej, okno klienta, uruchamianie serwera.
 client = Client("http://localhost:58585/SelectFromDB/soap/description?WSDL")
 
 try:

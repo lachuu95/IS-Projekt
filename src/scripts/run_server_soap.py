@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from ladon.server.wsgi import LadonWSGIApplication
 import wsgiref.simple_server
 from os.path import normpath, abspath, dirname, join

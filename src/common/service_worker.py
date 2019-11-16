@@ -8,14 +8,17 @@ from ladon.tools.log import (
     set_log_backup_count,
     set_log_maxsize,
 )
+import os
+from src.common.constants import file_path_log
 
 
-class Worker(QThread):
+class ServiceWorker(QThread):
     def __init__(self, parent=None):
         super().__init__(parent)
 
     def run(self):
-        set_logfile(join(dirname(normpath(abspath(__file__))), "examples.log"))
+        os.makedirs(dirname(file_path_log()), exist_ok=True)
+        set_logfile(file_path_log())
         set_loglevel(4)  # debug
         set_log_backup_count(50)
         set_log_maxsize(50000)

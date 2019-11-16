@@ -42,6 +42,4 @@ class Interface:
         app = QApplication([])
         window = Window(self.__data, **kwargs)
         window.show()
-        print("xd")
         sys.exit(app.exec_())
-        

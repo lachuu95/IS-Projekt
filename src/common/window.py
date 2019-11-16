@@ -11,10 +11,12 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 from src.common.dataset import Dataset
 from src.common.table_model import TableModel
+from src.common.worker import Worker
 
 
 class Window(QWidget):
     def __init__(self, data: Dataset, *args, **kwargs):
+        self.thread = Worker()
         self.__data = data
         self.__read_db = False
         self.__write_db = False
@@ -37,6 +39,7 @@ class Window(QWidget):
         layout.addLayout(self.__get_buttons_layout())
         layout.addWidget(self.__table_view)
         self.setLayout(layout)
+        self.thread.start()
 
     def __get_buttons_layout(self):
         btn_read = QPushButton("Wczytaj dane z pliku TXT", self)

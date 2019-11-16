@@ -123,14 +123,21 @@ Budowa serwisu sieciowego z wykorzystaniem SOAP
 >- katalog "rozwiazanie7_8" z uruchamialnymi plikami rozwiązania (aplikacji serwerowej i klienta);
 >- szczegóły ustawienia środowiska testowego zapisane w pliku tekstowym.
 ### Uruchomienie programu
-```console
-$ ./src/scripts/Lab7_8.py
-```
+- aplikacja z serwerem
+    ```console
+    $ ./src/scripts/Lab7_8.py
+    ```
+- aplikacja kliencka
+    ```console
+    $ ./src/scripts/Lab7_8_client.py
+    ```
 ---
 ## Technologie
 - [Python 3.6](https://docs.python.org/3.6/ "Dokumentacja Python'a")
 - [PyQt5](https://www.riverbankcomputing.com/static/Docs/PyQt5/ "Dokumentacja PyQt5")
 - [SQLite](https://www.sqlite.org/docs.html "Dokumentacja SQLite")
+- [Zeep](https://python-zeep.readthedocs.io/en/master/ "Dokumentacja Zeep")
+- [Ladon](https://ladon.readthedocs.io/en/latest/ "Dokumentacja Ladon")
 ---
 ## Przygotownaie środowiska
 ```console

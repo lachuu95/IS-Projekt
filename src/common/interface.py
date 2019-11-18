@@ -1,6 +1,7 @@
 import sys
 from src.common.dataset import Dataset
-from src.common.window import Window
+from src.common.server_window import ServerWindow
+from src.common.client_window import ClientWindow
 from PyQt5.QtWidgets import QApplication
 from typing import List
 
@@ -40,7 +41,12 @@ class Interface:
 
     def show_gui(self, **kwargs) -> None:
         app = QApplication([])
-        window = Window(self.__data, **kwargs)
+        window = ServerWindow(self.__data, **kwargs)
         window.show()
         sys.exit(app.exec_())
-        
+
+    def show_client_gui(self, **kwargs) -> None:
+        app = QApplication([])
+        window = ClientWindow(self.__data, **kwargs)
+        window.show()
+        sys.exit(app.exec_())

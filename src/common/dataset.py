@@ -11,6 +11,7 @@ from src.common.constants import (
     file_path_db,
     file_path_xml,
     table_name,
+    no_data_value,
 )
 import os
 
@@ -48,9 +49,24 @@ class Dataset:
         txt_saver.save_to_file(self.__file_path, contents)
 
     def read_data_db(self) -> None:
+        sql_query = f"SELECT * FROM `{table_name()}`"
         db_reader = ReadDB(self.__columns_headers)
         db_reader.create_connection(self.__is_file(file_path_db()))
-        contents = db_reader.select_from_db(table_name())
+        contents = db_reader.select_from_db(sql_query)
+        self.__data = db_reader.convert_db_to_json(contents)
+
+    def get_unique_list_from_db(self, column_name: str) -> List[str]:
+        sql_query = f"SELECT DISTINCT `{column_name}` FROM `{table_name()}`"
+        db_reader = ReadDB(self.__columns_headers)
+        db_reader.create_connection(self.__is_file(file_path_db()))
+        contents = db_reader.select_from_db(sql_query)
+        return [x[0] if x[0] != "" else no_data_value() for x in contents]
+    
+    def get_all_where_from_db(self, column_name: str, finding_value: str) -> None:
+        sql_query = f'SELECT * FROM `{table_name()}` WHERE `{column_name}` LIKE "{finding_value}"'
+        db_reader = ReadDB(self.__columns_headers)
+        db_reader.create_connection(self.__is_file(file_path_db()))
+        contents = db_reader.select_from_db(sql_query)
         self.__data = db_reader.convert_db_to_json(contents)
 
     def save_data_db(self) -> None:
